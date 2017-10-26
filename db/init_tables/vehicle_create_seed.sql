@@ -1,7 +1,7 @@
 -- The table needs to be dropped each time you restart nodemon. This is necessary for the Postman tests.
 -- === DROP TABLE ====================
 
-DROP TABLE IF EXISTS vehicles;
+DROP TABLE IF EXISTS vehicles CASCADE;
 
 -- === CREATE TABLE ==================
 
@@ -14,17 +14,18 @@ DROP TABLE IF EXISTS vehicles;
 -- owner_id   should be a number, foreign key
 
 CREATE TABLE IF NOT EXISTS vehicles (
-  id --(add datatype and/or table contraint),
-  make --(add datatype and/or table contraint),
-  model --(add datatype and/or table contraint),
-  year --(add datatype and/or table contraint),
-  owner_id --(add datatype and/or table contraint)
+  id serial primary key,
+  make text,
+  model text,
+  year integer,
+  owner_id integer,
+    FOREIGN KEY (owner_id) REFERENCES users(id)
 );
 
 -- === INSERT STATEMENT ===============
 
 -- Complete the insert statement below. The values below need to be inserted into the 'vehicles' table.
-
+INSERT INTO vehicles (make,model,year,owner_id) VALUES
 
 ('Toyota', 'Camry', 1991, 1),
 ('Honda', 'Civic', 1995, 1),
